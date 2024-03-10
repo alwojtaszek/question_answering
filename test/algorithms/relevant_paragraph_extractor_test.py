@@ -1,7 +1,6 @@
 import unittest
 
-from src.algorithms.relevant_paragraph_extractor import RelevantParagraphExtractor, \
-    split_policy_into_paragraphs
+from src.algorithms.relevant_paragraph_extractor import RelevantParagraphExtractor
 
 
 class TestRelevantParagraphExtractor(unittest.TestCase):

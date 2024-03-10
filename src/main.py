@@ -1,10 +1,10 @@
 import os
 import sys
 from langdetect import detect
-from algorithms.relevant_paragraph_extractor import RelevantParagraphExtractor, split_policy_into_paragraphs, \
+from algorithms.relevant_paragraph_extractor import RelevantParagraphExtractor, split_text_into_paragraphs, \
     concatenate_paragraphs
 from src.algorithms.translate_and_answer import TranslateAndAnswer
-from src.utils import set_env, InformationNotFoundException
+from src.utils import set_open_ai_key, InformationNotFoundException, set_open_ai_key
 
 path = os.getcwd()
 root_directory = r'{}\data'.format(path)
@@ -36,8 +36,8 @@ def main(question, similarity_threshold=0.6, min_paragraph_length=30, gpt_temper
     """
 
     # Splits the policy text into paragraphs that are longer than a given minimum length.
-    text = split_policy_into_paragraphs('{}/queen_victoria'.format(root_directory),
-                                        min_paragraph_length=min_paragraph_length)
+    text = split_text_into_paragraphs('{}/queen_victoria'.format(root_directory),
+                                      min_paragraph_length=min_paragraph_length)
 
     # Utilizes a translation and question-answering model to verify the question.
     gpt_question_verifier = TranslateAndAnswer(question, temperature=gpt_temperature)
@@ -68,10 +68,8 @@ def main(question, similarity_threshold=0.6, min_paragraph_length=30, gpt_temper
 
 
 if __name__ == "__main__":
-    # Sets up the environment.
-    openai_api_key = '<your.openai.key>'
-    set_env(openai_api_key)
 
     # Ask question in any language for provided text
+    set_open_ai_key()
     ask_question = """Who is queen Victoria?"""
     main(question=ask_question)

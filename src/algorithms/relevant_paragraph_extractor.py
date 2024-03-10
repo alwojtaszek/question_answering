@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-def split_policy_into_paragraphs(url: str, min_paragraph_length=30):
+def split_text_into_paragraphs(url: str, min_paragraph_length=30):
     file = open(url, encoding='utf-8')
     txt = file.read().split('\n\n')
     txt = [line for line in txt if len(line) > min_paragraph_length]

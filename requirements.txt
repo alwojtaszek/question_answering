@@ -1,0 +1,6 @@
+gensim
+scikit-learn
+langdetect
+openai
+langchain
+faiss-cpu
